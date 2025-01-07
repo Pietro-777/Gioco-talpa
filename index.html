@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/style.css/import.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.3.0/css/nes.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.3.0/css/nes-core.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="Griglia">
+        <div class="talpa">
+            <img class="tubo" src="static/images/tubo.png">
+        </div>
+        <div class="talpa"></div>
+        <div class="talpa"></div>
+        <div class="talpa"></div>
+        <div class="talpa"></div>
+        <div class="talpa"></div>
+    </div>
+
+    <section class="icon-list">
+        <!-- coin -->
+        <i class="nes-icon coin is-large"></i>
+        <i class="nes-mario"></i>
+    </section>
+
+    <section class="message -right">
+        <!-- Balloon -->
+        <div class="nes-balloon from-right">
+          <p>Good morning. Thou hast had a good night's sleep, I hope.</p>
+        </div>
+        <i class="nes-bcrikko"></i>
+      </section>
+    </section>
+  </section>
+
+    <script>
+    let elements = document.querySelectorAll(".talpa")
+   
+    for (let i = 0; i < elements.length; i++) {
+    elements[i].addEventListener("click", function (event) {
+        let el = event.currentTarget
+        el.classList.add("open")
+
+
+        setTimeout(function () {
+            el.classList.remove("open")
+        }, 2000)
+    })
+}
+    </script>
+    
+</body>
+</html>

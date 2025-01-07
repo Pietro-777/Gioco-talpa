@@ -1,0 +1,12 @@
+.icon-list{
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+    height: 100vh; 
+    margin-left: 20%;
+}
+
+.nes-mario{
+    margin-left: 50%;
+    transform: translateY(20px);
+}

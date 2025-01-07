@@ -1,0 +1,22 @@
+.Griglia {
+    display: flex;
+    width: 360px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.talpa {
+    margin: 10px;
+    background-color: blue;
+    width: 100px;
+    height: 100px;
+}
+
+.open {
+    background-color: red;
+}
