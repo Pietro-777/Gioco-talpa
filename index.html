@@ -11,14 +11,24 @@
 </head>
 <body>
     <div class="Griglia">
-        <div class="talpa">
+        <div class="stella">
             <img class="tubo" src="static/images/tubo.png">
         </div>
-        <div class="talpa"></div>
-        <div class="talpa"></div>
-        <div class="talpa"></div>
-        <div class="talpa"></div>
-        <div class="talpa"></div>
+        <div class="stella">
+            <img class="tubo" src="static/images/tubo.png">
+        </div>
+        <div class="stella">
+            <img class="tubo" src="static/images/tubo.png">
+        </div>
+        <div class="stella">
+            <img class="tubo" src="static/images/tubo.png">
+        </div>
+        <div class="stella">
+            <img class="tubo" src="static/images/tubo.png">
+        </div>
+        <div class="stella">
+            <img class="tubo" src="static/images/tubo.png">
+        </div>
     </div>
 
     <section class="icon-list">
@@ -27,18 +37,14 @@
         <i class="nes-mario"></i>
     </section>
 
-    <section class="message -right">
-        <!-- Balloon -->
-        <div class="nes-balloon from-right">
-          <p>Good morning. Thou hast had a good night's sleep, I hope.</p>
-        </div>
-        <i class="nes-bcrikko"></i>
-      </section>
-    </section>
-  </section>
+        <p class="nes-balloon from-left nes-pointer">
+            This is not a clickable element, but it's an area of the pointer.
+          </p>
+
+
 
     <script>
-    let elements = document.querySelectorAll(".talpa")
+    let elements = document.querySelectorAll(".stella")
    
     for (let i = 0; i < elements.length; i++) {
     elements[i].addEventListener("click", function (event) {

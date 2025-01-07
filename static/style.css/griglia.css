@@ -1,22 +1,20 @@
 .Griglia {
-    display: flex;
-    width: 360px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin: auto;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 33%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    row-gap: 1.25rem;
+    width: 36vw;
 }
-.talpa {
-    margin: 10px;
-    background-color: blue;
-    width: 100px;
-    height: 100px;
-}
-
-.open {
-    background-color: red;
+.stella {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 15vh;
 }
