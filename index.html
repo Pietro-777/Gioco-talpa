@@ -37,26 +37,15 @@
         <i class="nes-mario"></i>
     </section>
 
-        <p class="nes-balloon from-left nes-pointer">
-            This is not a clickable element, but it's an area of the pointer.
-          </p>
-
+    <div class="hero variant-four">
+        <div class="bottone">
+            <input id="button"  class="nes-btn is-success nes-text is-success" type="button" name="clicca" value="Avvia">
+        </div>
+    </div>
 
 
     <script>
-    let elements = document.querySelectorAll(".stella")
-   
-    for (let i = 0; i < elements.length; i++) {
-    elements[i].addEventListener("click", function (event) {
-        let el = event.currentTarget
-        el.classList.add("open")
 
-
-        setTimeout(function () {
-            el.classList.remove("open")
-        }, 2000)
-    })
-}
     </script>
     
 </body>
