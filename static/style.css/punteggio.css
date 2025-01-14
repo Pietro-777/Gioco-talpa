@@ -1,11 +1,25 @@
-.icon-list{
+.moneta{
     display: flex;
-    align-items: center; 
+    margin-left: 50%; 
     justify-content: flex-start; 
     height: 100vh; 
     margin-left: 20%;
 }
 
-.nes-mario{
-    margin-left: 70%;
+.mario{ 
+    position: absolute;
+    margin-left: 60%;
+}
+
+.vite{
+   margin: auto;
+   position: absolute;
+   margin-top: 35%;
+}
+
+
+.startGame{
+    position: absolute;
+    margin-right: 50%;
+   
 }

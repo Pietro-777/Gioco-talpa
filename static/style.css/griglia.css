@@ -14,7 +14,7 @@
 .stella {
     display: flex;
     justify-content: center;
-    align-items: center;
+    
     width: 12vw;
     height: 15vh;
 }
@@ -23,5 +23,11 @@
     width: 100%;
     height: 80%;
     position: relative;
-    
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
