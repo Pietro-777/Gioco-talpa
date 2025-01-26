@@ -3,155 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mario-talpa</title>
+    <link rel="stylesheet" href="static/style.css/index.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.3.0/css/nes.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.3.0/css/nes-core.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-
-<style>
-
-
-.mario {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto; 
-    padding-top: 0; 
-}
-
-
-.startGame {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    margin: 0 auto;
-    padding-top: 0; 
-}
-
-.finale {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 10px; 
-    font-family: 'Press Start 2P', monospace; 
-    font-size: 1rem; 
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5); 
-    padding: 10px; 
-    border-radius: 5px; 
-}
-
-.Griglia {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    justify-content: center; 
-    align-items: center; 
-    row-gap: 5rem; 
-    column-gap: 2.5rem; 
-    width: 36vw;
-    margin: 0 auto; 
-}
-
-
-.stella {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    width: 12vw;
-    height: 15vh;
-}
-
-.tubo {
-    width: 100%;
-    height: 80%;
-    position: relative;
-}
-
-.container {
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    flex-direction: column;
-    height: 100vh; 
-}
-
-#button {
-    width: 10vw;
-    height: 7.5vh;
-    color: blue;
-    font-weight: bold;
-    font-size: 1vw;
-    font-family: 'Press Start 2P', monospace;
-    margin: 0 auto; 
-}
-
-body {
-    width: 100%;
-    height: 100vh;
-    background-image: url("https://i.pinimg.com/originals/31/0d/4a/310d4a2f36b4fe4a07a31f5f7759a4d3.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    margin: 0;
-    display: flex;
-    justify-content: center; /* Centra tutti gli elementi orizzontalmente */
-    align-items: center; /* Centra tutti gli elementi verticalmente */
-    flex-direction: column;
-}
-
-
-
-</style>
-
 <body>
     <div class="container">
         <div class="Griglia">
-            <div class="stella">
-                <img class="tubo" src="static/images/tubo.png">
-            </div>
-            <div class="stella">
-                <img class="tubo" src="static/images/tubo.png">
-            </div>
-            <div class="stella">
-                <img class="tubo" src="static/images/tubo.png">
-            </div>
-            <div class="stella">
-                <img class="tubo" src="static/images/tubo.png">
-            </div>
-            <div class="stella">
-                <img class="tubo" src="static/images/tubo.png">
-            </div>
-            <div class="stella">
-                <img class="tubo" src="static/images/tubo.png">
-            </div>
+            <div class="stella"><img class="tubo" src="static/images/tubo.png"></div>
+            <div class="stella"><img class="tubo" src="static/images/tubo.png"></div>
+            <div class="stella"><img class="tubo" src="static/images/tubo.png"></div>
+            <div class="stella"><img class="tubo" src="static/images/tubo.png"></div>
+            <div class="stella"><img class="tubo" src="static/images/tubo.png"></div>
+            <div class="stella"><img class="tubo" src="static/images/tubo.png"></div>
         </div>
 
-        <div class="mario">
-            <section class="icon-list">
-                <!-- mario -->
-                <i class="nes-mario"></i>
-            </section>
-        </div>
-    
         <div class="startGame">
             <a id="start" class="nes-btn is-primary" href="#">START</a>
         </div>
 
-        <div id="tempo"></div>
-        
+        <div class="finale">
+            <div id="Punteggio">Il tuo Punteggio è stato di: 0</div>
         </div>
 
-        <div class="finale">
-            <div id="Punteggio">Il tuo Punteggio è stato di:</div>
-        </div>
-    
+        <div class="tempo">Tempo: 30s</div>
     </div>
 
     <script>
+        let elements = document.querySelectorAll(".stella");
+        let startButton = document.querySelector("#start");
+        let scoreDisplay = document.querySelector("#Punteggio");
+        let timeDisplay = document.querySelector(".tempo");
+        let talpa = -1;
+        let score = 0;
+        let gameRunning = false;
+        let gameInterval;
+        let gameTimeout;
 
+        function MagicNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        startButton.addEventListener("click", function () {
+            if (!gameRunning) {
+                gameRunning = true;
+                score = 0;
+                scoreDisplay.textContent = "Il tuo Punteggio è stato di: 0";
+                timeDisplay.textContent = "Tempo: 30s";
+                startGame();
+            }
+        });
+
+        function startGame() {
+            let gameTime = 30;
+            let displayTime = gameTime;
+
+            gameInterval = setInterval(function () {
+                displayTime -= 1;
+                timeDisplay.textContent = "Tempo " + displayTime + "s" ;
+                showTalpa();
+            }, 1000);
+
+            gameTimeout = setTimeout(function () {
+                clearInterval(gameInterval);
+                gameRunning = false;
+                timeDisplay.textContent = "Tempo scaduto!";
+                scoreDisplay.textContent = `Gioco finito! Il tuo punteggio è stato di:` + score;
+                hideTalpa();
+            }, gameTime * 1000);
+        }
+
+        function showTalpa() {
+            hideTalpa();
+            talpa = MagicNumber(0, elements.length - 1);
+            const selectedHole = elements[talpa];
+            selectedHole.classList.add("active");
+
+            const img = selectedHole.querySelector("img");
+            img.src = "static/images/mario.gioco.webp"; 
+        }
+
+        function hideTalpa() {
+            if (talpa >= 0) {
+                const selectedHole = elements[talpa];
+                selectedHole.classList.remove("active");
+
+                const img = selectedHole.querySelector("img");
+                img.src = "static/images/tubo.png"; 
+            }
+            talpa = -1;
+        }
+
+        elements.forEach((element, index) => {
+            element.addEventListener("click", function () {
+                if (gameRunning && index === talpa) {
+                    score += 1;
+                    scoreDisplay.textContent = "Punteggio:  " + score;
+                    hideTalpa();
+                }
+            });
+        });
     </script>
-    
 </body>
 </html>
