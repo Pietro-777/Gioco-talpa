@@ -31,21 +31,21 @@
     </div>
 
     <script>
-let buchi = document.querySelectorAll(".stella");
-let bottoneInizio = document.querySelector("#start");
-let visualizzaPunteggio = document.querySelector("#Punteggio");
-let visualizzaTempo = document.querySelector(".tempo");
-let talpaIndex = -1;
-let punteggio = 0;
-let partitaAttiva = false;
-let intervalloPartita;
-let timeoutPartita;
+    let buchi = document.querySelectorAll(".stella");
+    let bottoneInizio = document.querySelector("#start");
+    let visualizzaPunteggio = document.querySelector("#Punteggio");
+    let visualizzaTempo = document.querySelector(".tempo");
+    let talpaIndex = -1;
+    let punteggio = 0;
+    let partitaAttiva = false;
+    let intervalloPartita;
+    let timeoutPartita;
 
-function NumeroMagico(min, max) {
+    function NumeroMagico(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+    }
 
-bottoneInizio.addEventListener("click", function () {
+    bottoneInizio.addEventListener("click", function () {
     if (!partitaAttiva) {
         partitaAttiva = true;
         punteggio = 0;
@@ -53,9 +53,9 @@ bottoneInizio.addEventListener("click", function () {
         visualizzaTempo.textContent = "Tempo: 30s";
         avviaPartita();
     }
-});
+    });
 
-function avviaPartita() {
+    function avviaPartita() {
     let tempoPartita = 30;
     let tempoDaVisualizzare = tempoPartita;
 
@@ -72,9 +72,9 @@ function avviaPartita() {
         visualizzaPunteggio.textContent = `Gioco finito! Il tuo punteggio è stato di:` + punteggio;
         nascondiTalpa();
     }, tempoPartita * 1000);
-}
+    }
 
-function mostraTalpa() {
+    function mostraTalpa() {
     nascondiTalpa();
     talpaIndex = NumeroMagico(0, buchi.length - 1);
     const bucoSelezionato = buchi[talpaIndex];
@@ -82,9 +82,9 @@ function mostraTalpa() {
 
     const img = bucoSelezionato.querySelector("img");
     img.src = "static/images/mario.gioco.webp"; 
-}
+    }
 
-function nascondiTalpa() {
+    function nascondiTalpa() {
     if (talpaIndex >= 0) {
         const bucoSelezionato = buchi[talpaIndex];
         bucoSelezionato.classList.remove("active");
@@ -93,9 +93,9 @@ function nascondiTalpa() {
         img.src = "static/images/tubo.png"; 
     }
     talpaIndex = -1;
-}
+    }
 
-buchi.forEach((buco, index) => {
+    buchi.forEach((buco, index) => {
     buco.addEventListener("click", function () {
         if (partitaAttiva && index === talpaIndex) {
             punteggio += 1;
