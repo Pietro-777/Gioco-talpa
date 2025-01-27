@@ -31,79 +31,80 @@
     </div>
 
     <script>
-        let elements = document.querySelectorAll(".stella");
-        let startButton = document.querySelector("#start");
-        let scoreDisplay = document.querySelector("#Punteggio");
-        let timeDisplay = document.querySelector(".tempo");
-        let talpa = -1;
-        let score = 0;
-        let gameRunning = false;
-        let gameInterval;
-        let gameTimeout;
+let buchi = document.querySelectorAll(".stella");
+let bottoneInizio = document.querySelector("#start");
+let visualizzaPunteggio = document.querySelector("#Punteggio");
+let visualizzaTempo = document.querySelector(".tempo");
+let talpaIndex = -1;
+let punteggio = 0;
+let partitaAttiva = false;
+let intervalloPartita;
+let timeoutPartita;
 
-        function MagicNumber(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
+function NumeroMagico(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+bottoneInizio.addEventListener("click", function () {
+    if (!partitaAttiva) {
+        partitaAttiva = true;
+        punteggio = 0;
+        visualizzaPunteggio.textContent = "Il tuo Punteggio è stato di: 0";
+        visualizzaTempo.textContent = "Tempo: 30s";
+        avviaPartita();
+    }
+});
+
+function avviaPartita() {
+    let tempoPartita = 30;
+    let tempoDaVisualizzare = tempoPartita;
+
+    intervalloPartita = setInterval(function () {
+        tempoDaVisualizzare -= 1;
+        visualizzaTempo.textContent = "Tempo " + tempoDaVisualizzare + "s";
+        mostraTalpa();
+    }, 1000);
+
+    timeoutPartita = setTimeout(function () {
+        clearInterval(intervalloPartita);
+        partitaAttiva = false;
+        visualizzaTempo.textContent = "Tempo scaduto!";
+        visualizzaPunteggio.textContent = `Gioco finito! Il tuo punteggio è stato di:` + punteggio;
+        nascondiTalpa();
+    }, tempoPartita * 1000);
+}
+
+function mostraTalpa() {
+    nascondiTalpa();
+    talpaIndex = NumeroMagico(0, buchi.length - 1);
+    const bucoSelezionato = buchi[talpaIndex];
+    bucoSelezionato.classList.add("active");
+
+    const img = bucoSelezionato.querySelector("img");
+    img.src = "static/images/mario.gioco.webp"; 
+}
+
+function nascondiTalpa() {
+    if (talpaIndex >= 0) {
+        const bucoSelezionato = buchi[talpaIndex];
+        bucoSelezionato.classList.remove("active");
+
+        const img = bucoSelezionato.querySelector("img");
+        img.src = "static/images/tubo.png"; 
+    }
+    talpaIndex = -1;
+}
+
+buchi.forEach((buco, index) => {
+    buco.addEventListener("click", function () {
+        if (partitaAttiva && index === talpaIndex) {
+            punteggio += 1;
+            visualizzaPunteggio.textContent = "Punteggio: " + punteggio;
+            nascondiTalpa();
         }
+    });
+});
 
-        startButton.addEventListener("click", function () {
-            if (!gameRunning) {
-                gameRunning = true;
-                score = 0;
-                scoreDisplay.textContent = "Il tuo Punteggio è stato di: 0";
-                timeDisplay.textContent = "Tempo: 30s";
-                startGame();
-            }
-        });
-
-        function startGame() {
-            let gameTime = 30;
-            let displayTime = gameTime;
-
-            gameInterval = setInterval(function () {
-                displayTime -= 1;
-                timeDisplay.textContent = "Tempo " + displayTime + "s" ;
-                showTalpa();
-            }, 1000);
-
-            gameTimeout = setTimeout(function () {
-                clearInterval(gameInterval);
-                gameRunning = false;
-                timeDisplay.textContent = "Tempo scaduto!";
-                scoreDisplay.textContent = `Gioco finito! Il tuo punteggio è stato di:` + score;
-                hideTalpa();
-            }, gameTime * 1000);
-        }
-
-        function showTalpa() {
-            hideTalpa();
-            talpa = MagicNumber(0, elements.length - 1);
-            const selectedHole = elements[talpa];
-            selectedHole.classList.add("active");
-
-            const img = selectedHole.querySelector("img");
-            img.src = "static/images/mario.gioco.webp"; 
-        }
-
-        function hideTalpa() {
-            if (talpa >= 0) {
-                const selectedHole = elements[talpa];
-                selectedHole.classList.remove("active");
-
-                const img = selectedHole.querySelector("img");
-                img.src = "static/images/tubo.png"; 
-            }
-            talpa = -1;
-        }
-
-        elements.forEach((element, index) => {
-            element.addEventListener("click", function () {
-                if (gameRunning && index === talpa) {
-                    score += 1;
-                    scoreDisplay.textContent = "Punteggio:  " + score;
-                    hideTalpa();
-                }
-            });
-        });
     </script>
 </body>
 </html>
