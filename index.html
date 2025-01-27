@@ -98,10 +98,18 @@
 
     buchi.forEach((buco, index) => {                                                                                                                                    
     buco.addEventListener("click", function () {
-        if (partitaAttiva && index === talpaIndex) {
+        if (partitaAttiva) {
+            if (index === talpaIndex) {
             punteggio += 1;
             visualizzaPunteggio.textContent = "Punteggio: " + punteggio;
             nascondiTalpa();
+        }else{
+            
+            punteggio -=1;
+            visualizzaPunteggio.textContent = "Punteggio: " + punteggio;
+            nascondiTalpa();
+
+        }
         }
     });
 });
