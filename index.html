@@ -77,7 +77,7 @@
     function mostraTalpa() {
     nascondiTalpa();
     talpaIndex = NumeroMagico(0, buchi.length - 1);
-    const bucoSelezionato = buchi[talpaIndex];
+    let bucoSelezionato = buchi[talpaIndex];
     bucoSelezionato.classList.add("active");
 
     const img = bucoSelezionato.querySelector("img");
@@ -86,7 +86,7 @@
 
     function nascondiTalpa() {
     if (talpaIndex >= 0) {
-        const bucoSelezionato = buchi[talpaIndex];
+        let bucoSelezionato = buchi[talpaIndex];
         bucoSelezionato.classList.remove("active");
 
         const img = bucoSelezionato.querySelector("img");
