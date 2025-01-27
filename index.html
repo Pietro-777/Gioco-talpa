@@ -79,7 +79,6 @@
     talpaIndex = NumeroMagico(0, buchi.length - 1);
     let bucoSelezionato = buchi[talpaIndex];
     bucoSelezionato.classList.add("active");
-
     let img = bucoSelezionato.querySelector("img");
     img.src = "static/images/222662_1-removebg-preview.png"; 
     }
@@ -88,7 +87,6 @@
     if (talpaIndex >= 0) {
         let bucoSelezionato = buchi[talpaIndex];
         bucoSelezionato.classList.remove("active");
-
         let img = bucoSelezionato.querySelector("img");
         img.src = "static/images/tubo.png"; 
     }
